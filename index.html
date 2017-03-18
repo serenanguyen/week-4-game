@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RPG Game</title>
+
+	    <!-- Added link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">	
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1>RPG GAME</h1>
+		</div>	
+
+		<div class="row characters">
+			<div class="col-md-3 text-center option" id="A">
+				<div class="caption">
+					A
+				</div>				
+				<img src="assets/images/ss.png" alt="#">
+				<div class="caption health">
+					100
+				</div>
+			</div>
+
+			<div class="col-md-3 text-center option" id="B">
+				<div class="caption health">
+					B
+				</div>				
+				<img src="assets/images/ss.png" alt="#">
+				<div class="caption health">
+					200
+				</div>
+			</div>
+
+			<div class="col-md-3 text-center option" id="C">
+				<div class="caption health">
+					C
+				</div>				
+				<img src="assets/images/ss.png" alt="#">
+				<div class="caption health">
+					300
+				</div>
+			</div>
+
+			<div class="col-md-3 text-center option" id="D">
+				<div class="caption">
+					D
+				</div>				
+				<img src="assets/images/ss.png" alt="#">
+				<div class="caption health">
+					400
+				</div>
+			</div>												
+		</div>
+		
+		<div class="row yourCharacter">
+			<h2>Your Character</h2>
+		</div>
+
+		<div class="row enemies">
+			<h2>Enemies Available to Attack</h2>
+		</div>
+
+		<div class="row fight">
+			<h2>Fight Section</h2>
+			<button class="btn btn-danger attack">attack</button>
+		</div>
+
+		<div class="row defender">
+			<h2>Defender</h2>
+
+		</div>	
+
+		<div class="row results">
+			<!-- results and restart button -->
+		</div>					
+	</div>
+<script src="assets/javascript/game.js"></script>
+</body>
+</html>
