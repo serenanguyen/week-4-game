@@ -25,6 +25,7 @@
 $(document).ready(function(){
 	var wins = 0;
 	var loses = 0;
+	var mutliplier = 1;
 
 	var gameState = {
 		havePlayer: false,
@@ -52,21 +53,29 @@ $(document).ready(function(){
 			attackPoints: 5
 		}} 
 
-
 	};
-
+	function attack() {
+		$(".results").html("You attack " + gameState.enemy + " with " + (gameState.yourAttack * mutliplier) + "<br>" +
+			gameState.enemy + " attacks you with " + gameState.enemyAttack);
+		gameState.EnemyHealth = gameState.enemyHealth -= (gameState.yourAttack * mutliplier);
+		gameState.PlayerHealth = gameState.yourHealth -= gameState.enemyAttack;
+		console.log(gameState.EnemyHealth);
+		console.log(gameState.PlayerHealth);
+		$("." + gameState.yourPlayer).html(gameState.PlayerHealth);
+		$("." + gameState.enemy).html(gameState.EnemyHealth);		
+		}
 
 	$(".results").html("Pick your character");
 	$(".option").on("click", function(){
-
-	
 		if (!gameState.havePlayer) {
 			// on click move everything to enemies except what was clicked
 			$(".enemies").append($(".option").not(this));
 			// move character selected to your character
 			$(".yourCharacter").append(this);
 			gameState.yourPlayer = this.id
+
 			console.log(gameState.yourPlayer);
+			
 			gameState.yourHealth = gameState.characters[gameState.yourPlayer].health;
 			gameState.yourAttack = gameState.characters[gameState.yourPlayer].attackPoints;
 			console.log(gameState.yourHealth);	
@@ -89,23 +98,29 @@ $(document).ready(function(){
 
 	$(".attack").on("click", function(){
 	console.log("frog");
-	if(!gameState.havePlayer || !gameState.haveEnemy) {
-		$(".results").html("Choose character and enemy!");	
-	} else {
-			$(".results").html("You attack " + gameState.enemy + " with " + gameState.yourAttack + "<br>" +
-				gameState.enemy + " attacks you with " + gameState.enemyAttack);
-			gameState.newEnemyHealth = gameState.enemyHealth -= gameState.yourAttack;
-			gameState.newPlayerHealth = gameState.yourHealth -= gameState.enemyAttack;
-			
-		// 	(yourPlayer.health).html(newPlayerHealth)
-		// 	(enemy.health).html(newEnemyHealth)
+		if(!gameState.havePlayer || !gameState.haveEnemy) {
+			$(".results").html("Choose character and enemy!");	
+
+		} else if (gameState.enemyHealth > 0 && gameState.yourHealth > 0){
+			attack();
+			mutliplier++;
+			if (gameState.enemyHealth > 0 && gameState.yourHealth <= 0) {
+			$(".results").html("You lose!");
+			loses++; 
+			} else if(gameState.enemyHealth < 0 && gameState.yourHealth >= 0) {
+			$(".restults").html("You defeated " + gameState.enemy + " choose the next opponent");
+			$(".dead").append($("#"+gameState.enemy));
+			gameState.haveEnemy = false;
+			}
+		} 
+
 
 		// 	if(newPlayerHealth >== 0 && newEnemyHealth >0){
 		// 		yourPlayer.attackPoints = yourPlayer.attackPoints * 3
 		// 		run attack fnc
-		// 	} else if(newEnemyHealth ) {
+		// 	} 
 
-			}
+			
 
 		})	
 

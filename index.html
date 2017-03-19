@@ -17,6 +17,14 @@
 		<div class="row">
 			<h1>RPG GAME</h1>
 		</div>	
+		<div class="row">
+			<h2>Wins: 0</h2>
+			<h2>Loses: 0</h2>
+			<button class="btn btn-primary reset">reset</button>
+			<div class="row results">
+				
+			</div>			
+		</div class="row">
 
 		<div class="row characters">
 			<div class="col-md-3 text-center option" id="A">
@@ -24,28 +32,28 @@
 					A
 				</div>				
 				<img src="assets/images/ss.png" alt="#">
-				<div class="caption health">
+				<div class="caption A">
 					100
 				</div>
 			</div>
 
 			<div class="col-md-3 text-center option" id="B">
-				<div class="caption health">
+				<div class="caption">
 					B
 				</div>				
 				<img src="assets/images/ss.png" alt="#">
-				<div class="caption health">
-					200
+				<div class="caption B">
+					125
 				</div>
 			</div>
 
 			<div class="col-md-3 text-center option" id="C">
-				<div class="caption health">
+				<div class="caption">
 					C
 				</div>				
 				<img src="assets/images/ss.png" alt="#">
-				<div class="caption health">
-					300
+				<div class="caption C">
+					150
 				</div>
 			</div>
 
@@ -54,15 +62,20 @@
 					D
 				</div>				
 				<img src="assets/images/ss.png" alt="#">
-				<div class="caption health">
-					400
+				<div class="caption D">
+					175
 				</div>
 			</div>												
 		</div>
 		
-		<div class="row yourCharacter">
-			<h2>Your Character</h2>
-		</div>
+		<div class="row players">
+			<div class="col-md-6 text-center yourCharacter">
+				<h2>Your Character</h2>
+			</div>
+			<div class="col-md-6 text-center defender">
+				<h2>Defender</h2>
+			</div>	
+		</div>			
 
 		<div class="row enemies">
 			<h2>Enemies Available to Attack</h2>
@@ -73,13 +86,10 @@
 			<button class="btn btn-danger attack">attack</button>
 		</div>
 
-		<div class="row defender">
-			<h2>Defender</h2>
 
-		</div>	
 
-		<div class="row results">
-			<!-- results and restart button -->
+		<div class="row dead">
+			dead
 		</div>					
 	</div>
 <script src="assets/javascript/game.js"></script>
