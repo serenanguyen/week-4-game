@@ -27,7 +27,7 @@ $(document).ready(function(){
 	var loses = 0;
 	var mutliplier = 1;
 
-	var gameState = {
+	var baseState = {
 		havePlayer: false,
 		haveEnemy: false,
 
@@ -45,15 +45,17 @@ $(document).ready(function(){
 		C :{
 			id: 'C',
 			health: 150,
-			attackPoints: 10
+			attackPoints: 35
 		}, 
 		D :{
 			id: 'D',
 			health: 175,
-			attackPoints: 5
+			attackPoints: 20
 		}} 
-
 	};
+
+		var gameState = baseState;
+
 	function attack() {
 		$(".results").html("You attack " + gameState.enemy + " with " + (gameState.yourAttack * mutliplier) + "<br>" +
 			gameState.enemy + " attacks you with " + gameState.enemyAttack);
@@ -93,35 +95,33 @@ $(document).ready(function(){
 			console.log(gameState.enemyHealth);
 			$(".results").html("Attack");
 		}
-
 	});
 
 	$(".attack").on("click", function(){
 	console.log("frog");
 		if(!gameState.havePlayer || !gameState.haveEnemy) {
 			$(".results").html("Choose character and enemy!");	
-
 		} else if (gameState.enemyHealth > 0 && gameState.yourHealth > 0){
 			attack();
 			mutliplier++;
 			if (gameState.enemyHealth > 0 && gameState.yourHealth <= 0) {
-			$(".results").html("You lose!");
-			loses++; 
+				loses++; 
+			$(".results").html("You lose! Reset game.");
+			$(".loses").html("Loses: " + loses);
+
 			} else if(gameState.enemyHealth < 0 && gameState.yourHealth >= 0) {
-			$(".restults").html("You defeated " + gameState.enemy + " choose the next opponent");
-			$(".dead").append($("#"+gameState.enemy));
+				$(".restults").html("You defeated " + gameState.enemy + " choose the next opponent");
+				$(".dead").append($("#"+gameState.enemy));
 			gameState.haveEnemy = false;
 			}
 		} 
 
+	});
 
-		// 	if(newPlayerHealth >== 0 && newEnemyHealth >0){
-		// 		yourPlayer.attackPoints = yourPlayer.attackPoints * 3
-		// 		run attack fnc
-		// 	} 
-
-			
-
-		})	
+	$(".reset").on("click", function(){
+		console.log("numnum");
+		gameState = baseState;
+		$(".characters").html($(".option"))
+	});	
 
 })
