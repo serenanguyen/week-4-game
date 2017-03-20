@@ -1,27 +1,3 @@
-// each picture has a border and text
-// 	border changes colors according to which div class they're in
-// player picks a character by clicking on picture
-// that character moves into your characte div
-	// append img to new div
-// all other characters move to enemies div
-// player picks an enemy 
-// enemy moves to defender div
-// player clicks attack button 
-// results displayed
-// 	You attacked ___ for __ damage 
-// 		your damage increases each time (triple each time?)
-// 	Enemy attacked you back for __ damage
-// 		enemy attacks same damage each time
-// 	your character and enemy's score decreases 
-// if your score <= 0 and enemy score >0,  you lose
-// if enemy score 0, enemy photo hides
-// player picks new enemy
-// if click attack and defender div is empty results = no enemy here 
-// enemy moves to div 	
-// repeat
-// until enemies = 0 == you won
-// restart 
-
 $(document).ready(function(){
 	var wins = 0;
 	var loses = 0;
@@ -59,7 +35,7 @@ $(document).ready(function(){
 		havePlayer: false,
 		haveEnemy: false,
 		multiplier: 1,
-		dead: 0,		
+		dead:0,
 
 		characters: {
 		A :{
@@ -138,7 +114,7 @@ $(document).ready(function(){
 			$(".loses").html("Loses: " + loses);
 
 
-			} else if(gameState.enemyHealth < 0 && gameState.yourHealth >= 0) {
+			} else if(gameState.enemyHealth <= 0 && gameState.yourHealth >= 0) {
 				$(".restults").html("You defeated " + gameState.enemy + " choose the next opponent");
 				$(".dead").append($("#"+gameState.enemy));
 				gameState.dead++;
@@ -162,6 +138,10 @@ $(document).ready(function(){
 		$(".B").html(baseState.characters["B"].health);
 		$(".C").html(baseState.characters["C"].health);
 		$(".D").html(baseState.characters["D"].health);
+		gameState.havePlayer = false;
+		gameState.haveEnemy = false;
+		gameState.dead = 0;
+		gameState.multiplier =1;
 	});	
 
 })
