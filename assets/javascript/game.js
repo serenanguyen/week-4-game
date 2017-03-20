@@ -25,12 +25,12 @@
 $(document).ready(function(){
 	var wins = 0;
 	var loses = 0;
-	var mutliplier = 1;
-	var dead = 0;
 
 	var baseState = {
 		havePlayer: false,
 		haveEnemy: false,
+		multiplier: 1,
+		dead: 0,
 
 		characters: {
 		A :{
@@ -58,6 +58,8 @@ $(document).ready(function(){
 	var gameState = {
 		havePlayer: false,
 		haveEnemy: false,
+		multiplier: 1,
+		dead: 0,		
 
 		characters: {
 		A :{
@@ -83,9 +85,9 @@ $(document).ready(function(){
 	};
 
 	function attack() {
-		$(".results").html("You attack " + gameState.enemy + " with " + (gameState.yourAttack * mutliplier) + "<br>" +
+		$(".results").html("You attack " + gameState.enemy + " with " + (gameState.yourAttack * gameState.multiplier) + "<br>" +
 			gameState.enemy + " attacks you with " + gameState.enemyAttack);
-		gameState.EnemyHealth = gameState.enemyHealth -= (gameState.yourAttack * mutliplier);
+		gameState.EnemyHealth = gameState.enemyHealth -= (gameState.yourAttack * gameState.multiplier);
 		gameState.PlayerHealth = gameState.yourHealth -= gameState.enemyAttack;
 		console.log(gameState.EnemyHealth);
 		console.log(gameState.PlayerHealth);
@@ -93,7 +95,6 @@ $(document).ready(function(){
 		$("." + gameState.enemy).html(gameState.EnemyHealth);		
 		}
 
-	$(".results").html("Pick your character");
 	$(".option").on("click", function(){
 		if (!gameState.havePlayer) {
 			// on click move everything to enemies except what was clicked
@@ -130,20 +131,19 @@ $(document).ready(function(){
 			$(".results").html("Choose character and enemy!");	
 		} else if (gameState.enemyHealth > 0 && gameState.yourHealth > 0){
 			attack();
-			mutliplier++;
+			gameState.multiplier++;
 			if (gameState.enemyHealth > 0 && gameState.yourHealth <= 0 || gameState.enemyHealth <= 0 && gameState.yourHealth <= 0 ) {
 				loses++; 
 			$(".results").html("You lose! Reset game.");
 			$(".loses").html("Loses: " + loses);
-			$("." + gameState.yourPlayer).html(baseState.PlayerHealth);
-			$("." + gameState.enemy).html(baseState.EnemyHealth);
+
 
 			} else if(gameState.enemyHealth < 0 && gameState.yourHealth >= 0) {
 				$(".restults").html("You defeated " + gameState.enemy + " choose the next opponent");
 				$(".dead").append($("#"+gameState.enemy));
-				dead++;
+				gameState.dead++;
 				gameState.haveEnemy = false;
-					if(dead === 3) {
+					if(gameState.dead === 3) {
 						$(".results").html("You won!");	
 						wins++;
 						$(".wins").html("Wins: " + wins);
@@ -156,9 +156,12 @@ $(document).ready(function(){
 	$(".reset").on("click", function(){
 		console.log("numnum");
 		gameState = baseState;
-		// reset results and player health
+		$(".results").html("Pick your character");
 		$(".characters").html($(".option"))
-
+		$(".A").html(baseState.characters["A"].health);
+		$(".B").html(baseState.characters["B"].health);
+		$(".C").html(baseState.characters["C"].health);
+		$(".D").html(baseState.characters["D"].health);
 	});	
 
 })
