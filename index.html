@@ -3,8 +3,11 @@
 <head>
 	<title>RPG Game</title>
 
-	    <!-- Added link to the jQuery Library -->
+	<!-- Added link to the jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">	
 	
     <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -14,55 +17,64 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="col-md-12 row">
 			<h1>RPG</h1>
 		</div>	
 		<div class="row">
-			<h2 class="wins">Wins: 0</h2>
-			<h2 class="loses">Loses: 0</h2>
-			<button class="btn btn-primary reset">reset</button>
-			<div class="row results">
-				
-			</div>			
-		</div class="row">
+			<div class="col-md-6 stats">
+				<h2 class="wins">Wins: 0</h2>
+				<h2 class="loses">Loses: 0</h2>
+				<button class="btn btn-primary reset"><h3>reset</h3></button>		
+			</div>	
+
+			<div class="col-md-6 text-center fight">
+				<h2>Fight Section</h2>
+				<button class="btn btn-danger attack"><h3>attack</h3></button>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<h2 class="col-md-12 text-center results"></h2>
+		</div>
 
 		<div class="row characters">
-			<div class="col-md-3 text-center option" id="A">
+			<div class="col-md-3 text-center option" id="Peach">
 				<div class="caption">
-					A
+					Peach
 				</div>				
-				<img src="assets/images/A.png" alt="#">
-				<div class="caption A">
+				<img src="assets/images/A.png" class="Peach" alt="#">
+				<div class="caption Peach">
 					100
 				</div>
 			</div>
 
-			<div class="col-md-3 text-center option" id="B">
+			<div class="col-md-3 text-center option"  id="Darryl">
 				<div class="caption">
-					B
+					Darryl
 				</div>				
-				<img src="assets/images/B.png" alt="#">
-				<div class="caption B">
+				<img src="assets/images/B.png" class="Darryl" alt="#">
+				<div class="caption Darryl">
 					125
 				</div>
 			</div>
 
-			<div class="col-md-3 text-center option" id="C">
+			<div class="col-md-3 text-center option" id="Kody">
 				<div class="caption">
-					C
+					Kody
 				</div>				
-				<img src="assets/images/C.png" alt="#">
-				<div class="caption C">
+				<img src="assets/images/C.png" class="Kody" alt="#">
+				<div class="caption Kody">
 					150
 				</div>
 			</div>
 
-			<div class="col-md-3 text-center option" id="D">
+			<div class="col-md-3 text-center option" id="Eustice">
 				<div class="caption">
-					D
+					Eustice
 				</div>				
-				<img src="assets/images/D.png" alt="#">
-				<div class="caption D">
+				<img src="assets/images/D.png" class="Eustice" alt="#">
+				<div class="caption Eustice">
 					175
 				</div>
 			</div>												
@@ -77,14 +89,11 @@
 			</div>	
 		</div>			
 
-		<div class="row enemies">
+		<div class="row col-md-12 enemies">
 			<h2>Enemies Available to Attack</h2>
 		</div>
 
-		<div class="row fight">
-			<h2>Fight Section</h2>
-			<button class="btn btn-danger attack">attack</button>
-		</div>
+
 
 
 

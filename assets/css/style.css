@@ -1,9 +1,28 @@
 .dead {
 	display: none;
 }
+html {
+	height:100%;
+}
 body {
-	background-image: url('../images/bg.png');
-	height: 100%;
-	background-size: 100% 100%;
+/*	background-image: url('../images/bg.png');*/
+/*	height: 100%;
+	background-size: 100% 100%;*/
+	background: #FFEEFF;
 	background-repeat: no-repeat;
+	font-family: 'Amatic SC', cursive;
+	font-weight: 700;
+	height:100%;
+}
+
+.container {
+	background: white;
+	height:100%;
+}
+.caption {
+	font-size: 30px;
+}
+
+img {
+	height: 150px;
 }

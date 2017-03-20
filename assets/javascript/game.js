@@ -9,23 +9,19 @@ $(document).ready(function(){
 		dead: 0,
 
 		characters: {
-		A :{
-			id: 'A',
+		Peach :{
 			health: 100,
 			attackPoints: 20
 		}, 
-		B :{
-			id: 'B',
+		Darryl :{
 			health: 125,
 			attackPoints: 15
 		}, 
-		C :{
-			id: 'C',
+		Kody :{
 			health: 150,
 			attackPoints: 35
 		}, 
-		D :{
-			id: 'D',
+		Eustice :{
 			health: 175,
 			attackPoints: 20
 		}} 
@@ -38,23 +34,19 @@ $(document).ready(function(){
 		dead:0,
 
 		characters: {
-		A :{
-			id: 'A',
+		Peach :{
 			health: 100,
 			attackPoints: 20
 		}, 
-		B :{
-			id: 'B',
+		Darryl :{
 			health: 125,
 			attackPoints: 15
 		}, 
-		C :{
-			id: 'C',
+		Kody :{
 			health: 150,
 			attackPoints: 35
 		}, 
-		D :{
-			id: 'D',
+		Eustice :{
 			health: 175,
 			attackPoints: 20
 		}} 
@@ -68,14 +60,17 @@ $(document).ready(function(){
 		console.log(gameState.EnemyHealth);
 		console.log(gameState.PlayerHealth);
 		$("." + gameState.yourPlayer).html(gameState.PlayerHealth);
-		$("." + gameState.enemy).html(gameState.EnemyHealth);		
+		$("." + gameState.enemy).html(gameState.EnemyHealth);	
+		$("img." + gameState.yourPlayer).effect("shake");	
+		$("img." + gameState.enemy).effect("shake");
 		}
-
+//.css()to change font color according to what role they play?
 	$(".option").on("click", function(){
 		if (!gameState.havePlayer) {
 			// on click move everything to enemies except what was clicked
 			$(".enemies").append($(".option").not(this));
 			// move character selected to your character
+			
 			$(".yourCharacter").append(this);
 			gameState.yourPlayer = this.id
 
@@ -110,13 +105,14 @@ $(document).ready(function(){
 			gameState.multiplier++;
 			if (gameState.enemyHealth > 0 && gameState.yourHealth <= 0 || gameState.enemyHealth <= 0 && gameState.yourHealth <= 0 ) {
 				loses++; 
-			$(".results").html("You lose! Reset game.");
-			$(".loses").html("Loses: " + loses);
-
-
+				$("img." + gameState.yourPlayer).animate({opacity: "0"});
+				$(".results").html("You lose! Reset game.");
+				$(".loses").html("Loses: " + loses);
 			} else if(gameState.enemyHealth <= 0 && gameState.yourHealth >= 0) {
 				$(".restults").html("You defeated " + gameState.enemy + " choose the next opponent");
-				$(".dead").append($("#"+gameState.enemy));
+				$("img." + gameState.enemy).animate({opacity: "0"});
+				setTimeout(function(){
+				$(".dead").append($("#"+gameState.enemy))}, 1000);
 				gameState.dead++;
 				gameState.haveEnemy = false;
 					if(gameState.dead === 3) {
@@ -134,14 +130,15 @@ $(document).ready(function(){
 		gameState = baseState;
 		$(".results").html("Pick your character");
 		$(".characters").html($(".option"))
-		$(".A").html(baseState.characters["A"].health);
-		$(".B").html(baseState.characters["B"].health);
-		$(".C").html(baseState.characters["C"].health);
-		$(".D").html(baseState.characters["D"].health);
+		$(".Peach").html(baseState.characters["Peach"].health);
+		$(".Darryl").html(baseState.characters["Darryl"].health);
+		$(".Kody").html(baseState.characters["Kody"].health);
+		$(".Eustice").html(baseState.characters["Eustice"].health);
 		gameState.havePlayer = false;
 		gameState.haveEnemy = false;
 		gameState.dead = 0;
 		gameState.multiplier =1;
+		$("img").css({opacity: "1"});
 	});	
 
 })
