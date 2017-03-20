@@ -26,6 +26,7 @@ $(document).ready(function(){
 	var wins = 0;
 	var loses = 0;
 	var mutliplier = 1;
+	var dead = 0;
 
 	var baseState = {
 		havePlayer: false,
@@ -54,7 +55,32 @@ $(document).ready(function(){
 		}} 
 	};
 
-		var gameState = baseState;
+	var gameState = {
+		havePlayer: false,
+		haveEnemy: false,
+
+		characters: {
+		A :{
+			id: 'A',
+			health: 100,
+			attackPoints: 20
+		}, 
+		B :{
+			id: 'B',
+			health: 125,
+			attackPoints: 15
+		}, 
+		C :{
+			id: 'C',
+			health: 150,
+			attackPoints: 35
+		}, 
+		D :{
+			id: 'D',
+			health: 175,
+			attackPoints: 20
+		}} 
+	};
 
 	function attack() {
 		$(".results").html("You attack " + gameState.enemy + " with " + (gameState.yourAttack * mutliplier) + "<br>" +
@@ -84,6 +110,7 @@ $(document).ready(function(){
 			gameState.havePlayer = true;
 			$(".results").html("Pick your opponent");
 
+
 			// prevent your player from being selected again
 		} else if ((gameState.yourPlayer !== this.id) && !gameState.haveEnemy && gameState.havePlayer) {
 			$(".defender").append(this);
@@ -104,15 +131,23 @@ $(document).ready(function(){
 		} else if (gameState.enemyHealth > 0 && gameState.yourHealth > 0){
 			attack();
 			mutliplier++;
-			if (gameState.enemyHealth > 0 && gameState.yourHealth <= 0) {
+			if (gameState.enemyHealth > 0 && gameState.yourHealth <= 0 || gameState.enemyHealth <= 0 && gameState.yourHealth <= 0 ) {
 				loses++; 
 			$(".results").html("You lose! Reset game.");
 			$(".loses").html("Loses: " + loses);
+			$("." + gameState.yourPlayer).html(baseState.PlayerHealth);
+			$("." + gameState.enemy).html(baseState.EnemyHealth);
 
 			} else if(gameState.enemyHealth < 0 && gameState.yourHealth >= 0) {
 				$(".restults").html("You defeated " + gameState.enemy + " choose the next opponent");
 				$(".dead").append($("#"+gameState.enemy));
-			gameState.haveEnemy = false;
+				dead++;
+				gameState.haveEnemy = false;
+					if(dead === 3) {
+						$(".results").html("You won!");	
+						wins++;
+						$(".wins").html("Wins: " + wins);
+					}
 			}
 		} 
 
@@ -121,7 +156,9 @@ $(document).ready(function(){
 	$(".reset").on("click", function(){
 		console.log("numnum");
 		gameState = baseState;
+		// reset results and player health
 		$(".characters").html($(".option"))
+
 	});	
 
 })
