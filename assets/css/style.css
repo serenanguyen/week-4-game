@@ -26,3 +26,12 @@ body {
 img {
 	height: 150px;
 }
+.reset {
+	background-color: #F49AC2;
+	border-color: #F49AC2;
+}
+
+.attack {
+	background-color: #BC8DBF;
+	border-color: #BC8DBF;
+}
